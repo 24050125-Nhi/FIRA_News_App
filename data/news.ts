@@ -527,8 +527,9 @@ export const videos: VideoNews[] = [
     imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1000&q=80",
     category: "Giáo dục",
     views: 1540,
+    videoUrl: "https://vjs.zencdn.net/v/oceans.mp4",
     localSource: require('../assets/videos/VIDEO_DOWNLOAD_1788091436044_1788783536295.mp4'),
-    description: "Video tin tức giáo dục được lưu trực tiếp trong ứng dụng để phục vụ demo."
+    description: "Video tin tức giáo dục được phát trực tiếp trong ứng dụng."
   },
   {
     id: 102,
@@ -537,8 +538,9 @@ export const videos: VideoNews[] = [
     imageUrl: "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1000&q=80",
     category: "Đời sống",
     views: 2380,
+    videoUrl: "https://media.w3.org/2010/05/sintel/trailer.mp4",
     localSource: require('../assets/videos/VIDEO_DOWNLOAD_1788091436471_1788783529379.mp4'),
-    description: "Video đời sống - xã hội được chọn từ bộ video của dự án."
+    description: "Video đời sống - xã hội được phát trực tiếp trong ứng dụng."
   },
   {
     id: 103,
@@ -548,6 +550,7 @@ export const videos: VideoNews[] = [
     category: "Thời sự",
     views: 3890,
     isLive: true,
+    videoUrl: "https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/720/Big_Buck_Bunny_720_10s_1MB.mp4",
     localSource: require('../assets/videos/VIDEO_DOWNLOAD_1788091436718_1788783522603.mp4'),
     description: "Video thời sự ngắn phục vụ mục Video của FIRA News."
   },
@@ -558,6 +561,7 @@ export const videos: VideoNews[] = [
     imageUrl: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80",
     category: "Sức khỏe",
     views: 2760,
+    videoUrl: "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
     localSource: require('../assets/videos/VIDEO_DOWNLOAD_1788091437812_1788783512085.mp4'),
     description: "Video thuộc nhóm nội dung y tế - sức khỏe."
   },
@@ -568,6 +572,7 @@ export const videos: VideoNews[] = [
     imageUrl: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=80",
     category: "Tiêu dùng",
     views: 3180,
+    videoUrl: "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_1MB.mp4",
     localSource: require('../assets/videos/VIDEO_DOWNLOAD_1788091438006_1788783511102.mp4'),
     description: "Video đời sống - tiêu dùng giúp nội dung ứng dụng đa dạng hơn."
   }

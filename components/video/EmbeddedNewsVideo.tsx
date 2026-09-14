@@ -33,32 +33,30 @@ function createVideoHtml(videoUrl: string, poster?: string) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <style>
     html,body{margin:0;padding:0;width:100%;height:100%;background:#000;overflow:hidden;font-family:Arial,sans-serif;}
-    .wrap{position:relative;width:100%;height:100%;background:#000;}
+    .wrap{position:relative;width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;}
     video{width:100%;height:100%;object-fit:contain;background:#000;display:block;}
-    .hint{position:absolute;left:12px;right:12px;bottom:12px;background:rgba(0,0,0,.58);color:#fff;border-radius:12px;padding:8px 10px;font-size:13px;text-align:center;pointer-events:none;}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <video id="newsVideo" controls playsinline webkit-playsinline preload="metadata" poster="${safePoster}" src="${safeUrl}"></video>
-    <div class="hint">Bấm ▶ để xem video tin tức</div>
+    <video id="newsVideo" controls playsinline webkit-playsinline preload="auto" poster="${safePoster}" src="${safeUrl}"></video>
   </div>
-  <script>
-    const video = document.getElementById('newsVideo');
-    video.addEventListener('play', () => {
-      const hint = document.querySelector('.hint');
-      if (hint) hint.style.display = 'none';
-    });
-  </script>
 </body>
 </html>`;
 }
 
 function getVideoUrl(video: VideoNews) {
+  if (video.videoUrl) return video.videoUrl;
+  if (video.embedUrl) return video.embedUrl;
   if (video.localSource) {
-    return Asset.fromModule(video.localSource).uri || '';
+    try {
+      const asset = Asset.fromModule(video.localSource);
+      return asset.uri || '';
+    } catch {
+      return '';
+    }
   }
-  return video.videoUrl || video.embedUrl || '';
+  return '';
 }
 
 export function EmbeddedNewsVideo({ video, compact = false }: { video: VideoNews; compact?: boolean }) {
@@ -145,7 +143,9 @@ export function EmbeddedNewsVideo({ video, compact = false }: { video: VideoNews
         originWhitelist={['*']}
         mixedContentMode="always"
         androidLayerType="hardware"
-        setSupportMultipleWindows={false}
+        allowFileAccess
+        allowFileAccessFromFileURLs
+        allowUniversalAccessFromFileURLs
       />
     </View>
   );
