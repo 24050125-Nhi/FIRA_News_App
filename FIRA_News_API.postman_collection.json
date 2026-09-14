@@ -1,0 +1,457 @@
+{
+  "info": {
+    "_postman_id": "fira-news-api-v1-collection",
+    "name": "FIRA News API (Đầy đủ & Không lỗi)",
+    "description": "Bộ sưu tập Postman Collection đầy đủ cho hệ thống FIRA News. Phân chia rõ ràng thành 2 thư mục: GET (lấy dữ liệu) và POST/PUT/DELETE (gửi dữ liệu) với sẵn headers và body JSON mẫu chuẩn.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:4000/api",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "🟢 1. CÁC API [GET] - LẤY DỮ LIỆU",
+      "item": [
+        {
+          "name": "1.1. Lấy danh sách bài viết",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles?limit=10&sort=latest",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles"],
+              "query": [
+                { "key": "limit", "value": "10" },
+                { "key": "sort", "value": "latest" },
+                { "key": "category", "value": "all", "disabled": true },
+                { "key": "search", "value": "công nghệ", "disabled": true }
+              ]
+            },
+            "description": "Lấy danh sách các bài báo mới nhất hoặc theo danh mục, tìm kiếm."
+          }
+        },
+        {
+          "name": "1.2. Lấy chi tiết 1 bài viết",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "1"]
+            },
+            "description": "Lấy chi tiết nội dung, tác giả, hình ảnh của bài viết theo ID."
+          }
+        },
+        {
+          "name": "1.3. Lấy danh mục tin tức",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/categories",
+              "host": ["{{baseUrl}}"],
+              "path": ["categories"]
+            },
+            "description": "Lấy danh sách các chuyên mục: Nóng, Mới, Bóng đá, Công nghệ, v.v."
+          }
+        },
+        {
+          "name": "1.4. Lấy danh sách video",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/videos",
+              "host": ["{{baseUrl}}"],
+              "path": ["videos"]
+            },
+            "description": "Lấy danh sách video tin tức ngắn."
+          }
+        },
+        {
+          "name": "1.5. Lấy bình luận của bài viết",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/comments?articleId=1",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments"],
+              "query": [
+                { "key": "articleId", "value": "1" }
+              ]
+            },
+            "description": "Lấy danh sách bình luận của bài viết có articleId = 1."
+          }
+        },
+        {
+          "name": "1.6. Lấy điểm đánh giá bài viết",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ratings?articleId=1&userId=458",
+              "host": ["{{baseUrl}}"],
+              "path": ["ratings"],
+              "query": [
+                { "key": "articleId", "value": "1" },
+                { "key": "userId", "value": "458" }
+              ]
+            },
+            "description": "Lấy số sao trung bình và lượt đánh giá của bài viết."
+          }
+        },
+        {
+          "name": "1.7. Lấy danh sách tin đã lưu",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/bookmarks?userId=458",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookmarks"],
+              "query": [
+                { "key": "userId", "value": "458" }
+              ]
+            },
+            "description": "Lấy danh sách các bài báo mà người dùng đã bấm lưu (bookmark)."
+          }
+        },
+        {
+          "name": "1.8. Lấy lịch sử đọc báo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/history?userId=458",
+              "host": ["{{baseUrl}}"],
+              "path": ["history"],
+              "query": [
+                { "key": "userId", "value": "458" }
+              ]
+            },
+            "description": "Lấy danh sách các bài viết người dùng đã đọc gần đây."
+          }
+        },
+        {
+          "name": "1.9. Lấy nhật ký đọc báo (Bao nhiêu phút trước)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/logs/reading",
+              "host": ["{{baseUrl}}"],
+              "path": ["logs", "reading"]
+            },
+            "description": "Lấy lịch sử đọc báo có hiển thị tên người dùng, tên bài báo và số phút trước giống như trong app."
+          }
+        },
+        {
+          "name": "1.10. Lấy toàn bộ nhật ký hệ thống (Logs)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/logs?limit=50",
+              "host": ["{{baseUrl}}"],
+              "path": ["logs"],
+              "query": [
+                { "key": "limit", "value": "50" },
+                { "key": "ma_tai_khoan", "value": "458", "disabled": true },
+                { "key": "loai", "value": "usage_statistics", "disabled": true }
+              ]
+            },
+            "description": "Lấy danh sách nhật ký log theo bảng log chuẩn SQL của hệ thống."
+          }
+        },
+        {
+          "name": "1.11. Lấy dữ liệu Dashboard quản trị",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/admin/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["admin", "dashboard"]
+            },
+            "description": "Lấy dữ liệu thống kê tổng hợp cho trang quản trị Admin."
+          }
+        },
+        {
+          "name": "1.12. Lấy danh sách tài khoản người dùng",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": ["{{baseUrl}}"],
+              "path": ["users"]
+            },
+            "description": "Lấy danh sách toàn bộ tài khoản độc giả và quản trị viên."
+          }
+        },
+        {
+          "name": "1.13. Lấy danh sách nguồn báo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/sources",
+              "host": ["{{baseUrl}}"],
+              "path": ["sources"]
+            },
+            "description": "Lấy danh sách đối tác nguồn tin."
+          }
+        },
+        {
+          "name": "1.14. Lấy danh sách thông báo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/notifications",
+              "host": ["{{baseUrl}}"],
+              "path": ["notifications"]
+            },
+            "description": "Lấy danh sách các thông báo của hệ thống."
+          }
+        }
+      ]
+    },
+    {
+      "name": "🔴 2. CÁC API [POST / PUT / DELETE] - GỬI DỮ LIỆU",
+      "item": [
+        {
+          "name": "2.1. Đăng nhập tài khoản (Login Gmail)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"leductai@gmail.com\",\n  \"password\": \"123456\",\n  \"name\": \"Lê Đức Tài\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            },
+            "description": "Đăng nhập bằng Gmail. Hệ thống tự động lưu session và ghi nhận log online."
+          }
+        },
+        {
+          "name": "2.2. Đăng ký tài khoản mới (Register)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Nguyễn Văn A\",\n  \"email\": \"nguyenvana@gmail.com\",\n  \"password\": \"123456\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "register"]
+            },
+            "description": "Đăng ký tài khoản mới. Tự động khởi tạo lịch sử đọc tương tự người dùng trước đó."
+          }
+        },
+        {
+          "name": "2.3. Viết bình luận bài báo (Add Comment)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"articleId\": 1,\n  \"name\": \"Lê Đức Tài\",\n  \"content\": \"Bài viết rất hay và bổ ích!\",\n  \"userId\": 458\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/comments",
+              "host": ["{{baseUrl}}"],
+              "path": ["comments"]
+            },
+            "description": "Thêm bình luận mới vào bài viết."
+          }
+        },
+        {
+          "name": "2.4. Đánh giá sao bài viết (Rate Article)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"articleId\": 1,\n  \"userId\": 458,\n  \"score\": 5\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ratings",
+              "host": ["{{baseUrl}}"],
+              "path": ["ratings"]
+            },
+            "description": "Chấm điểm sao (1 - 5 sao) cho bài viết và tự động lưu vào log."
+          }
+        },
+        {
+          "name": "2.5. Thả tim thích bài viết (Like Article)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 458\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/articles/1/like",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "1", "like"]
+            },
+            "description": "Tăng lượt yêu thích của bài viết có ID = 1."
+          }
+        },
+        {
+          "name": "2.6. Lưu bài viết (Bookmark)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"userId\": 458,\n  \"articleId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/bookmarks",
+              "host": ["{{baseUrl}}"],
+              "path": ["bookmarks"]
+            },
+            "description": "Lưu bài viết vào danh sách Tin đã lưu của người dùng."
+          }
+        },
+        {
+          "name": "2.7. Ghi nhật ký đọc báo (Log Reading)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ma_tai_khoan\": 458,\n  \"ho_va_ten\": \"Lê Đức Tài\",\n  \"user_role\": \"Cộng tác viên\",\n  \"device_id\": \"7f5cfe24af715c01\",\n  \"device_info\": \"samsung SM-S906U1\",\n  \"loai\": \"usage_statistics\",\n  \"hanh_dong\": \"read_article\",\n  \"article_id\": 1,\n  \"bai_bao\": \"Video ngắn trở thành xu hướng truyền tải tin tức trên di động\",\n  \"chuyen_muc\": \"Công nghệ\",\n  \"timeSpent\": \"65s\",\n  \"clicks\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/logs",
+              "host": ["{{baseUrl}}"],
+              "path": ["logs"]
+            },
+            "description": "Ghi nhận nhật ký đọc báo lưu vào cơ sở dữ liệu."
+          }
+        },
+        {
+          "name": "2.8. Tăng lượt xem video (Watch Video)",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/videos/1/view",
+              "host": ["{{baseUrl}}"],
+              "path": ["videos", "1", "view"]
+            },
+            "description": "Tăng số lượt xem cho video có ID = 1."
+          }
+        },
+        {
+          "name": "2.9. Đăng bài viết mới (Create Article)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Tiêu đề bài viết mới thử nghiệm\",\n  \"summary\": \"Tóm tắt nội dung bài viết gửi từ Postman\",\n  \"content\": \"Nội dung chi tiết đầy đủ của bài viết thử nghiệm trên Postman.\",\n  \"category\": \"cong-nghe\",\n  \"author\": \"Lê Đức Tài\",\n  \"imageUrl\": \"https://images.unsplash.com/photo-1504711434969-e33886168f5c?auto=format&fit=crop&w=1200&q=80\",\n  \"tags\": [\"postman\", \"cong-nghe\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/articles",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles"]
+            },
+            "description": "Tạo một bài báo mới trong hệ thống."
+          }
+        },
+        {
+          "name": "2.10. Cập nhật bài viết (Update Article)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Tiêu đề bài viết đã cập nhật\",\n  \"summary\": \"Tóm tắt đã được sửa đổi qua Postman\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/articles/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "1"]
+            },
+            "description": "Cập nhật thông tin bài viết theo ID."
+          }
+        },
+        {
+          "name": "2.11. Xóa bài viết (Delete Article)",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/articles/999",
+              "host": ["{{baseUrl}}"],
+              "path": ["articles", "999"]
+            },
+            "description": "Xóa bài viết theo ID."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "fira-news-backend",
+  "version": "1.0.0",
+  "description": "Backend API local cho ứng dụng đọc báo FIRA News",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {},
+  "private": true
+}
